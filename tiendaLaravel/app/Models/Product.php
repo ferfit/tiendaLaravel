@@ -11,6 +11,9 @@ class Product extends Model
 
     protected $guarded = ['id','created_at','updated_at'];
 
+    const BORRADOR = 1;
+    const PUBLICADO = 2;
+
     //relacion 1 a muchos
     public function sizes(){
         return $this->hasMany(Size::class)

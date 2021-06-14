@@ -1,13 +1,17 @@
 <?php
 
+/* menu de navegacion principal  */
+
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use App\Models\Category;
 
 class Navigation extends Component
 {
     public function render()
     {
-        return view('livewire.navigation');
+        $categories = Category::all();
+        return view('livewire.navigation',compact('categories'));
     }
 }

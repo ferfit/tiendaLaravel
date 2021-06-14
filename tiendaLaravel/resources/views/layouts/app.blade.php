@@ -12,6 +12,8 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+        <!-- Font awesome -->
+        <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free/css/all.min.css')}}">
 
         @livewireStyles
 
@@ -35,5 +37,31 @@
         @stack('modals')
 
         @livewireScripts
+
+        {{-- funcion alpine --}}
+        <script>
+            function dropdown(){
+                return {
+                    open:true,
+                    show(){
+                        if(this.open){
+                            //se cierra el menu
+                            this.open = false;
+                            document.getElementsByTagName('html')[0].style.overflow = 'auto'
+
+                        } else {
+                            //se abre el menu
+                            this.open = true;
+                            //sacamos el scroll
+                            document.getElementsByTagName('html')[0].style.overflow = 'hidden'
+                        }
+                    },
+                    close(){
+                        this.open = false;
+                        document.getElementsByTagName('html')[0].style.overflow = 'auto'
+                    }
+                }
+            }
+        </script>
     </body>
 </html>

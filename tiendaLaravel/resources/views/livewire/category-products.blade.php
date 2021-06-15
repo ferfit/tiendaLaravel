@@ -5,28 +5,28 @@
         <div class="glider-contain">
             <ul class="glider-{{$category->id}}">
 
-            @foreach ($products as $product)
-                <li class="bg-white rounded-lg shadow {{$loop->last ? '' : 'sm:mr-4'}} ">
-                    <article>
-                        <figure>
-                            <img class="h-48 w-full object-cover object-center"
-                            src="{{Storage::url($product->images->first()->url )}}" alt="">
-                            <div class="py-4 px-6">
-                                <h1 class="text-lg font-semibold ">
-                                    <a href="">{{Str::limit($product->name,20)}}</a>   
-                                </h1>
-                                <p class="font-bold text-trueGray-700">${{$product->price}}</p>
-                            </div>
-                            
-                            
-                        </figure>    
-                    </article>
+                @foreach ($products as $product)
+                    <li class="bg-white rounded-lg shadow {{$loop->last ? '' : 'sm:mr-4'}} ">
+                        <article>
+                            <figure>
+                                <img class="h-48 w-full object-cover object-center"
+                                src="{{Storage::url($product->images->first()->url )}}" alt="">
+                                <div class="py-4 px-6">
+                                    <h1 class="text-lg font-semibold ">
+                                        <a href="">{{Str::limit($product->name,20)}}</a>   
+                                    </h1>
+                                    <p class="font-bold text-trueGray-700">${{$product->price}}</p>
+                                </div>
+                                
+                                
+                            </figure>    
+                        </article>
+                        
+                        
+                    </li>
                     
                     
-                </li>
-                
-                
-            @endforeach
+                @endforeach
             
             </ul>
         

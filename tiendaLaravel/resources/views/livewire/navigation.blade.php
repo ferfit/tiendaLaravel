@@ -1,5 +1,5 @@
 
-<header class="bg-trueGray-700 sticky top-0" x-data="dropdown()"> {{-- el x-data activamos alpine en el header --}}
+<header class="bg-trueGray-700 sticky top-0 z-50" x-data="dropdown()"> {{-- el x-data activamos alpine en el header --}}
     <div class="container flex items-center h-16 justify-between md:justify-start">
         <a 
         :class="{'bg-opacity-100 text-orange-500' : open}" {{-- cambian color de palabra categoria --}}

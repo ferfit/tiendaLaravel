@@ -34,7 +34,7 @@ class Product extends Model
 
     //relacion 1 a muchos polimorfica
     public function images(){
-        return $this->morphToMany(Image::class,'imageable'); //el segundo parametro es el metodo que creamos en el modelo model
+        return $this->morphMany(Image::class,'imageable'); //el segundo parametro es el metodo que creamos en el modelo model
     }
 
 }

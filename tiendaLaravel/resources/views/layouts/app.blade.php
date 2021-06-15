@@ -14,11 +14,17 @@
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
         <!-- Font awesome -->
         <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free/css/all.min.css')}}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/glider-js/1.7.7/glider.min.css">
 
         @livewireStyles
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/glider-js/1.7.7/glider.min.js
+
+
+
+        "></script>
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />
@@ -63,5 +69,7 @@
                 }
             }
         </script>
+
+        @stack('script')
     </body>
 </html>

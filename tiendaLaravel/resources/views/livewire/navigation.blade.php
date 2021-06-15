@@ -90,8 +90,9 @@
     :class="{'block':open,'hidden':!open}"
     x-show="open"
     class="bg-trueGray-700 bg-opacity-25 absolute w-full hidden">
+    {{-- menu computadora --}}
         <div class="container h-full hidden md:block">
-            {{-- menu computadora --}}
+            
             <div class="grid grid-cols-4 h-full relative"
             x-on:click.away="close()" >
                 
@@ -126,23 +127,74 @@
 
                 </div>
             </div>
-            {{-- menu movil --}}
-            <div class="bg-white h-full overflow-y-auto">
-                <ul>
-                    @foreach ($categories as $category)
-                        <li class="text-trueGray-500 hover:bg-orange-500 hover:text-white">
-                            <a href="" class="py-2 px-4 text-sm flex items-center">
-                                <span class="flex justify-center w-9">
-                                    {!!$category->icon!!}
-                                </span>
-                                {{$category->name}}
-                            </a>
-                        </li>
-                        
-                    @endforeach
-                </ul>
+            
 
+        </div>
+
+        {{-- menu movil --}}
+        <div class="bg-white h-full overflow-y-auto">
+            <div class="container  bg-gray-200 py-3 mb-2">
+                @livewire('search')
             </div>
+
+            <ul>
+                @foreach ($categories as $category)
+                    <li class="text-trueGray-500 hover:bg-orange-500 hover:text-white">
+                        <a href="" class="py-2 px-4 text-sm flex items-center">
+                            <span class="flex justify-center w-9">
+                                {!!$category->icon!!}
+                            </span>
+                            {{$category->name}}
+                        </a>
+                    </li>
+                    
+                @endforeach
+            </ul>
+
+            <p class="text-trueGray-500 px-" my->USUARIOS</p>
+
+            @livewire('cart-mobil')
+
+            @auth
+                <a href="{{ route ('profile.show')}}" class="py-2 px-4 text-sm flex items-center text-trueGray-500 hover:bg-orange-500 hover:text-white">
+                    <span class="flex justify-center w-9">
+                        <i class="far fa-address-card"></i>
+                    </span>
+                    Perfile
+                </a>
+
+                <a href="" 
+                onclick="event.preventDefault();
+                document.getElementById('logout-form').submit()"
+                class="py-2 px-4 text-sm flex items-center text-trueGray-500 hover:bg-orange-500 hover:text-white">
+                    <span class="flex justify-center w-9">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </span>
+                    Cerrar sesion
+                </a>
+
+                <form action="{{ route('logout')}}" id="logout-form"method="POST" class="hidden">
+                    @csrf
+                
+                </form>
+
+            @else
+                <a href="{{ route ('login')}}" class="py-2 px-4 text-sm flex items-center text-trueGray-500 hover:bg-orange-500 hover:text-white">
+                    <span class="flex justify-center w-9">
+                        <i class="fas fa-user-circle"></i>
+                    </span>
+                    Iniciar sesión
+                </a>
+
+                <a href="{{ route ('register')}}" class="py-2 px-4 text-sm flex items-center text-trueGray-500 hover:bg-orange-500 hover:text-white">
+                    <span class="flex justify-center w-9">
+                        <i class="fas fa-fingerprint"></i>
+                    </span>
+                    Registrarse
+                </a>
+
+                
+            @endauth
 
         </div>
 

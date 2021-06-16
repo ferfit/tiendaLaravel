@@ -1,4 +1,7 @@
 <div x-data> {{-- inicializamos con x-data par indicar que vamos a trabajar con alpine --}}
+    <p class="text-gray-700 mb-2"><span class="font-semibold text-lg">Stock disponible:</span>
+        {{$quantity}}
+     </p>
     <div class="flex">
         {{-- selectores cantidads --}}
         <div class="mr-4">
@@ -12,7 +15,12 @@
                 -
             </x-jet-secondary-button>
                 <span class="mx-2 text-gray-700">{{$qty}}</span>
-            <x-jet-secondary-button wire:click="increment">
+            <x-jet-secondary-button 
+            x-bind:disabled="$wire.qty >= $wire.quantity " 
+            wire:loading.attr="disabled" 
+            wire:target="increment"
+            wire:click="increment">
+            
                     +
             </x-jet-secondary-button>
         </div>

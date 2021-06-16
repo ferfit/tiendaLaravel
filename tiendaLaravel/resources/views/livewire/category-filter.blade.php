@@ -5,13 +5,13 @@
             <h1 class="font-semibold text-gray-700 uppercase">{{$category->name}}</h1>
 
             <div class="grid grid-cols-2 border border-gray-200 divide-x divide-gray-200 text-gray-500">
-                <i class="fas fa-border-all p-3 cursor-pointer"></i>
-                <i class="fas fa-th-list p-3 cursor-pointer "></i>
+                <i class="fas fa-border-all p-3 cursor-pointer {{ $view == 'grid' ? 'text-orange-500' : '' }}" wire:click="$set('view','grid')"></i>
+                <i class="fas fa-th-list p-3 cursor-pointer {{ $view == 'list' ? 'text-orange-500' : '' }}" wire:click="$set('view','list')"></i>
             </div>
         </div>  
     </div>
 
-    <div class="grid grid-cols-5 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
         {{-- filtro subcategorias --}}
         <aside>
             
@@ -45,30 +45,69 @@
             </x-jet-button>
         </aside>
         {{-- productos de x subcategoria --}}
-        <div class="col-span-4">
-            <ul class="grid grid-cols-4 gap-6">
-                @foreach ($products as $product)
-                <li class="bg-white rounded-lg shadow ">
-                    <article>
-                        <figure>
-                            <img class="h-48 w-full object-cover object-center"
-                            src="{{Storage::url($product->images->first()->url )}}" alt="">
-                            <div class="py-4 px-6">
-                                <h1 class="text-lg font-semibold ">
-                                    <a href="">{{Str::limit($product->name,20)}}</a>   
-                                </h1>
-                                <p class="font-bold text-trueGray-700">${{$product->price}}</p>
-                            </div>
-                            
-                            
-                        </figure>    
-                    </article>
-                    
-                    
-                </li>
-                    
-                @endforeach
-            </ul>
+        <div class=" md:col-span-2 lg:col-span-4">
+            @if ($view == 'grid') {{-- opcion grid --}}
+                <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    @foreach ($products as $product)
+                    <li class="bg-white rounded-lg shadow ">
+                        <article>
+                            <figure>
+                                <img class="h-48 w-full object-cover object-center"
+                                src="{{Storage::url($product->images->first()->url )}}" alt="">
+                                <div class="py-4 px-6">
+                                    <h1 class="text-lg font-semibold ">
+                                        <a href="">{{Str::limit($product->name,20)}}</a>   
+                                    </h1>
+                                    <p class="font-bold text-trueGray-700">${{$product->price}}</p>
+                                </div>
+                                
+                                
+                            </figure>    
+                        </article>
+                        
+                        
+                    </li>
+                        
+                    @endforeach
+                </ul>
+            @else
+                <ul> {{-- opcion list --}}
+                    @foreach ($products as $product)
+                        <li class="bg-white rounded-lg shadow mb-4">
+                            <article class="flex ">
+                                <img class="h-48 w-56 object-cover object-center"
+                                src="{{Storage::url($product->images->first()->url )}}" alt="">
+                                <div class="flex-1 py-4 px-6 flex flex-col">
+                                    <div class="flex justify-between">
+                                        <div>
+                                            <h1 class="text-lg font-semibold text-gray-700">{{$product->name}}</h1>
+                                            <p class="font-semibold text-gray-700">${{$product->price}}</p>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <ul class="flex text-sm">
+                                                <li><i class="fas fa-star text-yellow-400 mr-1"></i></li>
+                                                <li><i class="fas fa-star text-yellow-400 mr-1"></i></li>
+                                                <li><i class="fas fa-star text-yellow-400 mr-1"></i></li>
+                                                <li><i class="fas fa-star text-yellow-400 mr-1"></i></li>
+                                                <li><i class="fas fa-star text-yellow-400 mr-1"></i></li>
+                                            </ul>
+                                            <span class="text-gray-700 text-sm">(24)</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-auto mb-6">
+                                        <x-jet-danger-button>
+                                            Más información
+                                        </x-jet-danger-button>
+                                    </div>
+                                </div>
+                            </article>
+                        </li>
+                        
+                    @endforeach
+                </ul>
+            @endif
+            
             <div class="mt-4">
                 {{$products->links()}}
             </div>

@@ -56,7 +56,7 @@
                                 src="{{Storage::url($product->images->first()->url )}}" alt="">
                                 <div class="py-4 px-6">
                                     <h1 class="text-lg font-semibold ">
-                                        <a href="">{{Str::limit($product->name,20)}}</a>   
+                                        <a href="{{route('product.show',$product)}}">{{Str::limit($product->name,20)}}</a>   
                                     </h1>
                                     <p class="font-bold text-trueGray-700">${{$product->price}}</p>
                                 </div>
@@ -96,9 +96,9 @@
                                     </div>
 
                                     <div class="mt-auto mb-6">
-                                        <x-jet-danger-button>
+                                        <x-danger-enlace href="{{route('product.show',$product)}}">
                                             Más información
-                                        </x-jet-danger-button>
+                                        </x-danger-enlace>
                                     </div>
                                 </div>
                             </article>

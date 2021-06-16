@@ -11,20 +11,22 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
         <!-- Styles -->
-        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-        <!-- Font awesome -->
-        <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free/css/all.min.css')}}">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/glider-js/1.7.7/glider.min.css">
-
-        @livewireStyles
+            <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+            <!-- Font awesome -->
+            <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free/css/all.min.css')}}">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/glider-js/1.7.7/glider.min.css">
+            <!-- Jquery -->
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+            <!-- Flex Slider -->
+            <link rel="stylesheet" href="{{asset('vendor/FlexSlider/flexslider.css')}}">
+            @livewireStyles
 
         <!-- Scripts -->
-        <script src="{{ mix('js/app.js') }}" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/glider-js/1.7.7/glider.min.js
-
-
-
-        "></script>
+            <script src="{{ mix('js/app.js') }}" defer></script>
+            <!-- Glider -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/glider-js/1.7.7/glider.min.js"></script>
+            <!-- Flex Slider -->
+            <script src="{{asset('vendor/FlexSlider/jquery.flexslider-min.js')}}"></script>
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />

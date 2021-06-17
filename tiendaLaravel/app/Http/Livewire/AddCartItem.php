@@ -11,7 +11,10 @@ class AddCartItem extends Component
 
     // creamos una variable para asignarle el valor del stock del producto
     public $product, $quantity; //en $product almacenamos la variable del producto que se la pasamos al este componente
-    public $options =[]; // aca vamos a almacenar las opciones adicionales para el carrito
+    public $options =[
+        'color_id' => null,
+        'size_id' => null
+    ]; // aca vamos a almacenar las opciones adicionales para el carrito
     
     public function mount(){
         $this->quantity = $this->product->quantity; // ahora almacenamos el stock en la variable $quantity

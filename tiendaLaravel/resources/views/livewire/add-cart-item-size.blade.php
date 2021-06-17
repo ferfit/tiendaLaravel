@@ -50,6 +50,9 @@
         <div class="flex-1">
             <x-button 
             x-bind:disabled="!$wire.quantity"  {{-- 0 es false 1 o mas es true, solo cuando el valor de quantity sea cero, se desactiva, por eso el simbolo ! --}}
+            wire:click="addItem"
+            wire:loading.attr="disabled" {{-- mientras carga un proceso se desabilita, pero cual? --}}
+            wire:target="addItem"  {{-- aca indico a cual metodo --}}
             class="w-full" color="orange">Agregar al carrito</x-button>
         </div>
     </div>

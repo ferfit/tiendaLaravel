@@ -6,7 +6,7 @@
     <select wire:model="color_id" class="form-control"> {{-- clase creada por nosotros --}}
         <option value="" selected disabled>Seleccione un color</option>
         @foreach ($colors as $color) {{-- la variable $colors es la del controlador del componente --}}
-            <option value="{{$color->id}}">{{$color->name}}</option>
+            <option value="{{$color->id}}">{{__($color->name)}}</option>
         @endforeach
     </select>
 
@@ -36,6 +36,9 @@
         <div class="flex-1">
             <x-button 
             x-bind:disabled="!$wire.quantity"  {{-- 0 es false 1 o mas es true, solo cuando el valor de quantity sea cero, se desactiva, por eso el simbolo ! --}}
+            wire:click="addItem"
+            wire:loading.attr="disabled" {{-- mientras carga un proceso se desabilita, pero cual? --}}
+            wire:target="addItem"  {{-- aca indico a cual metodo --}}
             class="w-full" color="orange">Agregar al carrito</x-button>
         </div>
     </div>

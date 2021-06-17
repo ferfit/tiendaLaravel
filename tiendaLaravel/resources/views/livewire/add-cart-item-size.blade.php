@@ -1,4 +1,9 @@
 <div x-data>
+    {{-- stock --}}
+    <p class="text-gray-700 mb-2"><span class="font-semibold text-lg">Stock disponible:</span>
+        {{$quantity}}
+     </p>
+     {{-- selector talla --}}
     <div>
         <p class="text-xl text-gray-700">Talla:</p>
         <select name="" id="" class="form-control" wire:model="size_id">
@@ -9,6 +14,7 @@
             @endforeach
         </select>
     </div>
+    {{-- selector color --}}
     <div class="mt-2">
         <p class="text-xl text-gray-700">Color:</p>
         <select name="" id="" class="form-control" wire:model="color_id">
@@ -19,11 +25,9 @@
             @endforeach
         </select>
     </div>
-
-    <div class="flex mt-4">
-        {{-- selectores cantidads --}}
-        <div class="mr-4">
-            
+    {{-- selectores cantidads --}}
+    <div class="flex mt-4">  
+        <div class="mr-4"> 
             <x-jet-secondary-button 
             disabled {{-- por defecto esta desabilitado --}}
             x-bind:disabled="$wire.qty <= 1 " {{-- condicion que quita o agrega "disabled" --}}

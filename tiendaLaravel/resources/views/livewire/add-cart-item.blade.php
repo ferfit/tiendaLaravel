@@ -26,7 +26,11 @@
         </div>
         {{-- boton agregar al carrito --}}
         <div class="flex-1">
-            <x-button class="w-full" color="orange">Agregar al carrito</x-button>
+            <x-button 
+            wire:click="addItem"
+            wire:loading.attr="disabled" {{-- mientras carga un proceso se desabilita, pero cual? --}}
+            wire:target="addItem"  {{-- aca indico a cual metodo --}}
+            class="w-full" color="orange">Agregar al carrito</x-button>
         </div>
     </div>
 </div>

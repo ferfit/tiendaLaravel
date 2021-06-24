@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
 {
@@ -13,6 +14,24 @@ class Product extends Model
 
     const BORRADOR = 1;
     const PUBLICADO = 2;
+
+    //accesores 
+    public function getStockAttribute(){
+        //especificamos que tipo de producto es
+        if ($this->subcategory->size) {
+            //accedemos al modelo de la tabla intermedia ColorSize
+            return ColorSize::whereHas('size.product', function(Builder $query){ // primer parametro, traemos la relacion con la tabla size, y seguido con la de product, luego viene la funcion
+                $query->where('id', $this->id);
+            })->sum('quantity');
+        } elseif ($this->subcategory->color) {
+            return ColorProduct::whereHas('product', function(Builder $query){
+                $query->where('id', $this->id);
+            })->sum('quantity');
+        } else {
+            return $this->quantity;
+        }
+        
+    }
 
     //relacion 1 a muchos
     public function sizes(){

@@ -1,7 +1,11 @@
 <div x-data>
     {{-- stock --}}
     <p class="text-gray-700 mb-2"><span class="font-semibold text-lg">Stock disponible:</span>
-        {{$quantity}}
+        @if ($quantity)
+            {{$quantity}}
+        @else
+            {{$product->stock}}
+        @endif
      </p>
      {{-- selector talla --}}
     <div>

@@ -1,6 +1,6 @@
 <div x-data> {{-- inicializamos con x-data par indicar que vamos a trabajar con alpine --}}
     <p class="text-gray-700 mb-2"><span class="font-semibold text-lg">Stock disponible:</span>
-        {{$quantity}}
+        {{$product->stock}}
      </p>
     <div class="flex">
         {{-- selectores cantidads --}}
@@ -27,6 +27,7 @@
         {{-- boton agregar al carrito --}}
         <div class="flex-1">
             <x-button 
+            x-bind:disabled="$wire.qty > $wire.quantity " {{-- Bloqueo del boton cuando se acaba el stock --}}
             wire:click="addItem"
             wire:loading.attr="disabled" {{-- mientras carga un proceso se desabilita, pero cual? --}}
             wire:target="addItem"  {{-- aca indico a cual metodo --}}

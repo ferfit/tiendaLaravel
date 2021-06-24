@@ -17,7 +17,7 @@ class AddCartItem extends Component
     ]; // aca vamos a almacenar las opciones adicionales para el carrito
     
     public function mount(){
-        $this->quantity = $this->product->quantity; // ahora almacenamos el stock en la variable $quantity
+        $this->quantity = qty_available($this->product->id); //le pasamos el helpers, la aclaracion que sigue es vieja. ahora almacenamos el stock en la variable $quantity
         $this->options['image'] = Storage::url($this->product->images->first()->url); // guardamos la imagen en la variable opciones
     }
 
@@ -44,6 +44,12 @@ class AddCartItem extends Component
          'options' => $this->options
          ]);
 
+
+         $this->quantity = qty_available($this->product->id);
+
+         //reseteamos la propiedad qty
+         $this->reset('qty');
+         // emitimos el evento al compontente del carrito
          $this->emitTo('dropdown-cart','render');
     }
 

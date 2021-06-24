@@ -1,6 +1,10 @@
 <div x-data>
     <p class="text-gray-700 mb-2"><span class="font-semibold text-lg">Stock disponible:</span>
-        {{$quantity}}
+        @if ($quantity)
+            {{$quantity}}
+        @else
+            {{$product->stock}}
+        @endif
      </p>
     <p class="text-xl text-gray-700">Color:</p>
     <select wire:model="color_id" class="form-control"> {{-- clase creada por nosotros --}}

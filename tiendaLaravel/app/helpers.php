@@ -11,11 +11,11 @@ function quantity($product_id, $color_id = null, $size_id = null){ //recibe 3 pa
     if($size_id ){
 
         $size = Size::find($size_id);
-        $quantity = $size->color->find($color_id)->pivot->quantity;
+        $quantity = $size->colors->find($color_id)->pivot->quantity;
 
     } elseif($color_id) {
 
-        $quantity = $product->color->find($color_id)->pivot->quantity;
+        $quantity = $product->colors->find($color_id)->pivot->quantity;
     } else {
         $quantity = $product->quantity;
     }
@@ -30,7 +30,9 @@ function qty_added($product_id, $color_id = null, $size_id = null){
     $cart = Cart::content();
     $item = $cart->where('id',$product_id)
                         ->where('options.color_id',$color_id)
-                        ->where('options.size_id',$$size_id);
+                        ->where('options.size_id',$size_id)
+                        ->first()
+                        ;
 
     if($item){
         return $item->qty;

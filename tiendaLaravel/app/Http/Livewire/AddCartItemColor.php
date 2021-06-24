@@ -25,7 +25,7 @@ class AddCartItemColor extends Component
     //metodo a la escucha cada vez que selecciona un color - asignamos el valor del stock a la variable $quantity
     public function updatedColorId($value){ // este metodo se va a ejecutar cada vez que modifiquemos el valor de $color_id
         $color = $this->product->colors->find($value);
-        $this->quantity = $color->pivot->quantity; // en value se almacena el id del color que seleccionamos en el select
+        $this->quantity = qty_available($this->product->id, $color->id); //pasamos el helpers // en value se almacena el id del color que seleccionamos en el select
         $this->options['color'] = $color->name;
     }
 
@@ -48,6 +48,11 @@ class AddCartItemColor extends Component
          'options' => $this->options
          ]);
 
+         $this->quantity = qty_available($this->product->id, $this->color_id);
+
+         //reseteamos la propiedad qty
+         $this->reset('qty');
+         // emitimos el evento al compontente del carrito
          $this->emitTo('dropdown-cart','render');
     }
 
